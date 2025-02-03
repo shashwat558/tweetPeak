@@ -5,7 +5,7 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY ?? "";
 
 export async function POST(req: Request){
 
-    const defaultPrompt = "Enhance the following tweet to make it more engaging, clear, and impactful while maintaining its original intent. if there are bullet point in the tweet add those and also add relevant details.Only return the improved tweet without any explanations or additional text and make it of altest 3 lines your tweet is :  "
+    const defaultPrompt = "Enhance the following tweet to make it more engaging, clear, and impactful while maintaining its original intent. if there are bullet point in the tweet add those and also add relevant details.You will also get the which type of emotion should a tweet deliver so make the tweet according to that emotion.Only return the improved tweet without any explanations or additional text and make it of altest 3 lines your tweet is :  "
 
     console.log("hi");
 

@@ -6,6 +6,7 @@ import { MouseEvent, useState } from "react";
 export default function Home() {
   const [prompt, setPrompt] = useState<string>("");
   const [output, setOutput] = useState<string>("");
+  const [emotion, setEmotion] = useState<string>("");
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ export default function Home() {
       headers: {
         'Content-Type': "application/json"
       },
-      body: JSON.stringify({body: prompt})
+      body: JSON.stringify({body: prompt + `make this ${emotion}`})
     })
       const data = await res.json();
 
@@ -30,6 +31,7 @@ export default function Home() {
     console.log(err)
   }
   }
+
   
 
 
@@ -42,10 +44,26 @@ export default function Home() {
         </h1>
         <div className="flex ">
         <textarea  value={prompt} onChange={(e) => setPrompt(e.target.value)} className="bg-gray-800 w-[500px] h-[300px] text-white border-[2px] border-gray-700 rounded-lg p-2" typeof="text" />
+          
 
         <button onClick={handleSubmit} className="bg-white justify-items-center text-black rounded-lg w-20 h-12">Enhance</button>
         <p dangerouslySetInnerHTML={{__html: output.replace(/\n/g, "<br />")}} className="text-white bg-gray-900 w-[500px] h-[300px] p-5 gap-5 overflow-scroll"></p>
         </div>
+        <a target="_blank" href={`https://x.com/intent/tweet?text=${output}`}>
+        <button className="bg-white">
+          Use
+        </button>
+        <button className="bg-white m-2" onClick={handleAgainSubmit}>again</button>
+          
+        </a>
+        <select name="type" id="" onChange={(e) => setEmotion(e.target.value)}>
+           <option value="funny">funny</option>
+           <option value="motivational">Motivational</option>
+           <option value="emotional">emotional</option>
+          </select>
+
+
+        
 
       </div>
     </div>
